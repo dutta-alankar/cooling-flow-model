@@ -1,0 +1,1 @@
+double* MeanElIonWeight(double *);
