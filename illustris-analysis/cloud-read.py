@@ -3,6 +3,7 @@
 Created on Fri Oct  27 20:21:19 2020
 
 @author: alankar
+Output saved in physical CGS units
 """
 
 import numpy as np
@@ -16,7 +17,6 @@ basePath = '/virgo/simulations/IllustrisTNG/L35n2160TNG/output'
 snapNum = 67
 haloID = 8
 fields = ['SubhaloMass','SubhaloSFRinRad', 'SubhaloVel']
-cloud_no = 0
 snapLoc = '%s/snapdir_%03d/snap_%03d.0.hdf5'%(basePath, snapNum, snapNum)
 
 header = hdf.File(snapLoc, 'r')
@@ -37,8 +37,6 @@ halo_rad = il.groupcat.loadHalos(basePath, snapNum, fields=['Group_R_Crit200'])
 print('Halo size: %f'%(np.array(halo_rad)[haloID]) )
 
 #halos = il.groupcat.loadSingle(basePath, snapNum, haloID=haloID, subhaloID=-1)
-cloud_no = 0
-cloud_no = 0
 #print(halos.keys())
 
 gas_part = il.snapshot.loadHalo(basePath, snapNum, id=haloID, partType='gas', fields=None)
@@ -72,14 +70,8 @@ print(list(cloud_file['objects'].keys()))
 print(list(cloud_file['props'].keys()))
 print('Total number of clouds: %d\n'%len( np.array(cloud_file['props/radius'])))
 
-cloud_radius = np.array(cloud_file['props/radius'])[cloud_no]*kpc
-cloud_pos = np.array(cloud_file['props/cen'])[cloud_no]*kpc
-cloud_vel = np.array(cloud_file['props/vrel'])[cloud_no]*(1e5)**2
-print('Cloud size [kpc]: ',cloud_radius/kpc)
-
 #Convert from comoving to physical coordinates
 gas_pos = np.array(gas_part['Coordinates'])*ckpc/h
-distance = np.sqrt((gas_pos[:,0]-cloud_pos[0])**2 + (gas_pos[:,1]-cloud_pos[1])**2 + (gas_pos[:,2]-cloud_pos[2])**2)
 gas_posx = gas_pos[:,0]
 gas_posy = gas_pos[:,1]
 gas_posz = gas_pos[:,2]

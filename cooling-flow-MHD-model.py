@@ -147,7 +147,7 @@ neniL = dcgs**2*Lam*Lam0/(mue*mui*mp**2)
 test_energy = pcgs*vcgs*dsbydr/(gamma-1) + neniL 
 test_energy = test_energy/neniL
 Becgs = Be*v0**2
-Mdot = -Rcgs**q*dcgs*vcgs
+Mdot = -Rcgs**q*dcgs*vcgs*np.pi*4
 
 checks = False
 if checks:

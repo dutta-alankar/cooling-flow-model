@@ -27,7 +27,7 @@ hdf.close()
 
 fig = plt.figure(figsize=(13,15))
 #0 --> proxy for floating cutoff
-cutoffs = [0, 5, 40] #, 20, 50, 100, 200, 300, 499] 
+cutoffs = [0, 5, 20] #, 20, 50, 100, 200, 300, 499] 
 size_sel_min, size_sel_max = np.min(cl_r), np.max(cl_r) #1.0, 1.5 #kpc
 floating = False
 if 0 in cutoffs: floating = True
@@ -100,7 +100,7 @@ for cutoff in cutoffs:
         plt.semilogy(T_plot,Edot_vals,linewidth=5, color='tab:green', 
                      label=r'Median cloud (%d kpc)'%cutoff)
         plt.fill_between(T_plot, Edot_16p, Edot_84p, alpha=0.5, color='tab:green')    
-    elif cutoff == 20:
+    elif cutoff == 40:
         plt.semilogy(T_plot,Edot_vals,linewidth=5, color='tab:olive', 
                      label=r'Median cloud (%d kpc)'%cutoff)
         plt.fill_between(T_plot, Edot_16p, Edot_84p, alpha=0.5, color='tab:olive')
@@ -108,7 +108,7 @@ for cutoff in cutoffs:
         plt.semilogy(T_plot,Edot_vals,linewidth=5, color='yellow', 
                      label=r'Median cloud (%d kpc)'%cutoff)
         plt.fill_between(T_plot, Edot_16p, Edot_84p, alpha=0.5, color='yellow')
-    elif cutoff == 40:
+    elif cutoff == 20:
         plt.semilogy(T_plot,Edot_vals,linewidth=5, color='tab:purple', 
                      label=r'Median cloud (%d kpc)'%cutoff)
         plt.fill_between(T_plot, Edot_16p, Edot_84p, alpha=0.5, color='tab:purple')
