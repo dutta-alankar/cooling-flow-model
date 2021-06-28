@@ -30,7 +30,7 @@ Description of the files:
 - ```discriminant_contour_MHD.py```: Contour of the discriminant of the two-fuid equation for the transonic solution to exist.
 - ```discriminant_transonic_cf.py```: Pure hydro discriminant for the transonic solution to exist.
 - ```pres_dr_CF_MHD-vary_for_figs1and3.py```: Creates just the de-dimensionalized solutions of fluid field in cooling flow model. Set beta very high to get the pure hydro limit. This can be varied to get the figures 1 and 3 in the paper.
-- ```dylan-nelson/```: Contains cloud stacking data from Nelson et. al 2020.
+- ```dylan-nelson/```: This directory contains cloud stacking data from Nelson et. al 2020.
 - ```illustris-analysis/cloud-read.py```: Creates the essential data file ```data-gasandcloud.h5``` from the Illustris TNG501 snapshot. This creates a smaller file from which most analysis can be done without depending on the much larger snapshot. Requires Illustris data to run.
 - ```illustris-analysis/diff-emm-comparepdfs.png```: Generates the normalized mass and volume PDFs and compares it with normalized differential emission from the entire halo.
 - ```illustris-analysis/diff-emm-create_data.py```: MPI aware code which calculates the differential emission around a given region from the center of each cloud. Usage: ```mpiexec -n <# processors> python -m mpi4py diff-emm-create_data.py <cutoff in physical kpc>```. If ```<cutoff in physical kpc>``` is not provided, it uses 3 times the respective cloud radius as a default cutoff. The data is stored in a ```.npy``` file whose name is self-explanatory.
@@ -43,3 +43,4 @@ for getting the polytropic index value for the magnetic fluid.
 - ```illustris-analysis/oneoff-cloud-DEM.py```: Creates the differential emission from the region chosen around the center of one user chosen cloud.
 - ```illustris-analysis/power-spec.py```: Generates the gas velocity power spectrum of gas from the regions around the cloud. Useful for any future turbulence studies.
 - ```illustris-analysis/proj-prof.py```: Generates projected histograms of the halo for a quick visual inspection. By all means use the plotting utilities from Illustris web interface and avoid this.
+- ```PLUTO-simulations/```: This directory contains all the setup and data (ascii) of the hydro PDEs solved using finite volume PLUTO hydro code in one dimension. It also has the associated plotting scripts. The names of the files and sub-directories are self-explanatory.
