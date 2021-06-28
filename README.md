@@ -11,11 +11,11 @@ This work is on modelling of local cooling flows in astrophysical plasma of the 
 
 This repo contains the codes and the data used in the paper "Cooling flows around cold clouds in the circumgalactic medium:theory & comparison with TNG50"
 The larger sized data used in the code and cannot be uploaded to Github due to size restrictions can be found here: https://drive.google.com/file/d/1a2xM4T_U-emlXu8vRK23LeGUMgklnoFw/view?usp=sharing
-The ```cooling-flow-model-largedata.zip``` file contains the following files:
+The ```cooling-flow-model-largedata.zip``` file contains the following files compressed in it:
 ```
-data-gasandcloud.h5
-segmentation_67_h8_Mg-II-numdens_gt_1e-08.hdf5
-tag-neighbours.npy
+data-gasandcloud.h5 : Striped down essential info on the gas cells from the halo of interest from Illustris TNG50-1.
+segmentation_67_h8_Mg-II-numdens_gt_1e-08.hdf5 : Stacked data for clouds from Nelson et. al 2020.
+tag-neighbours.npy : Cells are tagged with no of clouds each cell is a part of given some cutoff region to consider around clouds.
 ```
 These files need to be placed at proper location for the python scripts to find them. You may need to tweak a little bit for the code to find it.
 
