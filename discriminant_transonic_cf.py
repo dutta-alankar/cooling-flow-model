@@ -32,7 +32,7 @@ plt.ylabel(r'Discriminant ($\Delta$)')
 plt.fill([-2, 5, 5, -2],[-25, -25, 0, 0],alpha=0.2)
 plt.text(-1, -14, r'$\Delta$<0, no transonic solution', fontsize=16)
 '''
-
+#uncomment this portion for panel 2
 q=2
 Dis = q*q*(gamma*(alpha-1)+4-alpha)**2 - 4*(gamma+1)*q*(q*(alpha-2)+1)
 vp1 = (-q*(gamma*(alpha-1)+4-alpha) + np.sqrt(Dis))/(2*(gamma+1))
