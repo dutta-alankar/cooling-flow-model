@@ -88,7 +88,7 @@ for cloud in range(1,len(sizes)):
                     alpha=0.1, color=colors[cloud-1] )
     
     axs[1, 0].plot(dn_radius, -mdot_50[cloud-1], linewidth=5, linestyle='-', color=colors[cloud-1],
-                   label=r'$\rm R_{cl}=%.1f \ kpc\ -\ %.1f \ kpc$ (%.2f)'%(sizes[cloud-1], sizes[cloud], net))
+                   label=r'$\rm R_{cl}=%.1f \ kpc\ -\ %.1f \ kpc$'%(sizes[cloud-1], sizes[cloud]))
     axs[1, 0].fill_between(dn_radius, -mdot_16[cloud-1], -mdot_84[cloud-1],
                     alpha=0.1, color=colors[cloud-1] )
     
@@ -99,7 +99,7 @@ axs[1, 0].set_yscale('log')
 
 axs[0,0].text(3.3, 10, r'inflow', fontsize=28, color='black')
 axs[1,0].text(3.3, 10, r'outflow', fontsize=28, color='black')
-fig.supylabel(r'$\dot{\rm M}$ [$\rm M_\odot yr^{-1}$]',size=28, x=-0.0001)
+fig.supylabel(r'$\dot{\rm M}$ [$\rm M_\odot yr^{-1}$]',size=28, x=-0.00001)
 axs[1, 0].set_xlabel(r'distance [$\rm kpc$]',size=28)
 axs[0, 0].tick_params(axis='both', which='major', labelsize=24, direction="out", pad=5)
 axs[0, 0].tick_params(axis='both', which='minor', labelsize=24, direction="out", pad=5)
