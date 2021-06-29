@@ -34,7 +34,7 @@ muH = 1/X
 
 gamma = 5./3
 gamma_m = 1.03
-sizes = [0.5, 1.1, 0.5, 2.0] #kpc
+sizes = [0.5, 1.0, 0.5, 2.0] #kpc
 
 K = 4*np.pi
 q = 2
@@ -76,7 +76,7 @@ axs[0, 0].set_xlim(xmin=0., xmax=5.0)
 axs[1, 0].set_xlim(xmin=0., xmax=5.0)
 axs[1, 0].invert_yaxis()
 
-colors = ['tab:red', 'tab:green' ,'tab:blue', 'tab:purple']
+colors = ['tab:red' ,'tab:blue', 'tab:green', 'tab:purple']
 for cloud in range(1,len(sizes)): 
     inflow, outflow = np.median(mdot_50[cloud-1][mdot_50[cloud-1]>0]), -np.median(mdot_50[cloud-1][mdot_50[cloud-1]<0])
     #net = inflow-outflow
@@ -84,18 +84,19 @@ for cloud in range(1,len(sizes)):
     axs[0, 0].plot(dn_radius, mdot_50[cloud-1], linewidth=5, linestyle='-', color=colors[cloud-1] )
              #label=r'$\rm R_{cl}=%.1f \ kpc\ -\ %.1f \ kpc$ ($\rm %.1f \times 10^{%d}\ M_\odot yr^{-1}$)'%(sizes[cloud-1], 
              #sizes[cloud], fman(net),fexp(net)) )
-    axs[0, 0].fill_between(dn_radius, mdot_16[cloud-1], mdot_84[cloud-1],
-                    alpha=0.1, color=colors[cloud-1] )
+    if cloud==2: axs[0, 0].fill_between(dn_radius, mdot_16[cloud-1], mdot_84[cloud-1],
+                    alpha=0.3, color=colors[cloud-1] )
     
     axs[1, 0].plot(dn_radius, -mdot_50[cloud-1], linewidth=5, linestyle='-', color=colors[cloud-1],
                    label=r'$\rm R_{cl}=%.1f \ kpc\ -\ %.1f \ kpc$'%(sizes[cloud-1], sizes[cloud]))
-    axs[1, 0].fill_between(dn_radius, -mdot_16[cloud-1], -mdot_84[cloud-1],
-                    alpha=0.1, color=colors[cloud-1] )
+    if cloud==2: axs[1, 0].fill_between(dn_radius, -mdot_16[cloud-1], -mdot_84[cloud-1],
+                    alpha=0.3, color=colors[cloud-1] )
     
     
 axs[0, 0].set_yscale('log')
 axs[1, 0].set_yscale('log')  
-
+axs[0, 0].set_ylim(ymin=10**-5.5)
+axs[1, 0].set_ylim(ymax=10**-5.5)
 
 axs[0,0].text(3.3, 10, r'inflow', fontsize=28, color='black')
 axs[1,0].text(3.3, 10, r'outflow', fontsize=28, color='black')
@@ -105,9 +106,9 @@ axs[0, 0].tick_params(axis='both', which='major', labelsize=24, direction="out",
 axs[0, 0].tick_params(axis='both', which='minor', labelsize=24, direction="out", pad=5)
 axs[1, 0].tick_params(axis='both', which='major', labelsize=24, direction="out", pad=5)
 axs[1, 0].tick_params(axis='both', which='minor', labelsize=24, direction="out", pad=5)
-axs[0, 0].set_xticks([])
 axs[0, 0].grid()
 axs[1, 0].grid()
+#axs[0, 0].set_xticks([])
 axs[1, 0].legend(loc='lower left', prop={'size': 18},framealpha=0.3, shadow=False, fancybox=True)
 plt.savefig('mdot-tng.png', transparent=True, bbox_inches='tight')
 plt.show()
