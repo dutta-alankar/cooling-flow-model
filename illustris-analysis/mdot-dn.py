@@ -7,10 +7,7 @@ Created on Mon Mar  8 12:04:17 2021
 
 import numpy as np
 import matplotlib.pyplot as plt
-from scipy.stats import binned_statistic
-#matplotlib.rcParams['pdf.fonttype'] = 42
-#matplotlib.rcParams['ps.fonttype'] = 42
-#matplotlib.use('pdf')
+import matplotlib.gridspec as gridspec
 from decimal import Decimal
 
 def fexp(number):
@@ -37,7 +34,7 @@ muH = 1/X
 
 gamma = 5./3
 gamma_m = 1.03
-sizes = [0.5, 1.0, 1.5, 2.0] #kpc
+sizes = [0.5, 1.1, 0.5, 2.0] #kpc
 
 K = 4*np.pi
 q = 2
@@ -68,25 +65,49 @@ for select in range(len(sizes)):
     mdot_84.append( -K*(dn_radius*kpc)**q*(dn_nH_84*mu*mp)*(dn_vel_84*1e5)/(Msun/yr) )
 
 
-sizes = np.hstack(([0],sizes))
-plt.figure(figsize=(13,10))
+sizes = np.hstack(([0,],sizes))
+fig, axs = plt.subplots(2, 1, figsize=(13,10))
+gs1 = gridspec.GridSpec(2, 1)
+gs1.update(wspace=0.28, hspace=0.008) # set the spacing between axes.
+axs = np.array([ [plt.subplot(gs1[0]),], 
+                 [plt.subplot(gs1[1]),] ])
+axs[0, 0].get_xaxis().set_ticklabels([])
+axs[0, 0].set_xlim(xmin=0., xmax=5.0)
+axs[1, 0].set_xlim(xmin=0., xmax=5.0)
+axs[1, 0].invert_yaxis()
+
+colors = ['tab:red', 'tab:green' ,'tab:blue', 'tab:purple']
 for cloud in range(1,len(sizes)): 
-    plt.plot(dn_radius, mdot_50[cloud-1], linewidth=5, 
-             label=r'$\rm R_{cl}=%.1f \ kpc\ -\ %.1f \ kpc$'%(sizes[cloud-1], 
-             sizes[cloud]) )
-    plt.fill_between(dn_radius, mdot_16[cloud-1], mdot_84[cloud-1],
-                    alpha=0.15 )
+    inflow, outflow = np.median(mdot_50[cloud-1][mdot_50[cloud-1]>0]), -np.median(mdot_50[cloud-1][mdot_50[cloud-1]<0])
+    #net = inflow-outflow
+    net = outflow/inflow
+    axs[0, 0].plot(dn_radius, mdot_50[cloud-1], linewidth=5, linestyle='-', color=colors[cloud-1] )
+             #label=r'$\rm R_{cl}=%.1f \ kpc\ -\ %.1f \ kpc$ ($\rm %.1f \times 10^{%d}\ M_\odot yr^{-1}$)'%(sizes[cloud-1], 
+             #sizes[cloud], fman(net),fexp(net)) )
+    axs[0, 0].fill_between(dn_radius, mdot_16[cloud-1], mdot_84[cloud-1],
+                    alpha=0.1, color=colors[cloud-1] )
     
-plt.yscale('log')  
-plt.ylim(ymin=1e-5)  
-plt.xlim(xmin=0, xmax=5.)
-#plt.title('Mass flow around IllustrisTNG50-1  simulated clouds', size=28)
-plt.ylabel(r'$\dot{\rm M}$ [$\rm M_\odot yr^{-1}$]',size=28)
-plt.xlabel(r'distance [$\rm kpc$]',size=28)
-plt.tick_params(axis='both', which='major', labelsize=24, direction="out", pad=5)
-plt.tick_params(axis='both', which='minor', labelsize=24, direction="out", pad=5)
-plt.grid()
-#plt.ylim(ymin=-1.5e2,ymax=1.5e2)
-plt.legend(loc='upper left', prop={'size': 24},framealpha=0.3, shadow=False, fancybox=True)
+    axs[1, 0].plot(dn_radius, -mdot_50[cloud-1], linewidth=5, linestyle='-', color=colors[cloud-1],
+                   label=r'$\rm R_{cl}=%.1f \ kpc\ -\ %.1f \ kpc$ (%.2f)'%(sizes[cloud-1], sizes[cloud], net))
+    axs[1, 0].fill_between(dn_radius, -mdot_16[cloud-1], -mdot_84[cloud-1],
+                    alpha=0.1, color=colors[cloud-1] )
+    
+    
+axs[0, 0].set_yscale('log')
+axs[1, 0].set_yscale('log')  
+
+
+axs[0,0].text(3.3, 10, r'inflow', fontsize=28, color='black')
+axs[1,0].text(3.3, 10, r'outflow', fontsize=28, color='black')
+fig.supylabel(r'$\dot{\rm M}$ [$\rm M_\odot yr^{-1}$]',size=28, x=-0.0001)
+axs[1, 0].set_xlabel(r'distance [$\rm kpc$]',size=28)
+axs[0, 0].tick_params(axis='both', which='major', labelsize=24, direction="out", pad=5)
+axs[0, 0].tick_params(axis='both', which='minor', labelsize=24, direction="out", pad=5)
+axs[1, 0].tick_params(axis='both', which='major', labelsize=24, direction="out", pad=5)
+axs[1, 0].tick_params(axis='both', which='minor', labelsize=24, direction="out", pad=5)
+axs[0, 0].set_xticks([])
+axs[0, 0].grid()
+axs[1, 0].grid()
+axs[1, 0].legend(loc='lower left', prop={'size': 18},framealpha=0.3, shadow=False, fancybox=True)
 plt.savefig('mdot-tng.png', transparent=True, bbox_inches='tight')
 plt.show()
