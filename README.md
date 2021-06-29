@@ -1,4 +1,4 @@
-# cooling-flow-model-
+# cooling-flow-model
 This work is on modelling of local cooling flows in astrophysical plasma of the Circumgalactic medium and comparison with Illustris TNG50 Cosmological simulation.
 
 ```
