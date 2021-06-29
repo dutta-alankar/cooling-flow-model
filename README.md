@@ -1,4 +1,4 @@
-# cooling-flow-model-
+# cooling-flow-model
 This work is on modelling of local cooling flows in astrophysical plasma of the Circumgalactic medium and comparison with Illustris TNG50 Cosmological simulation.
 
 ```
@@ -44,3 +44,5 @@ for getting the polytropic index value for the magnetic fluid.
 - ```illustris-analysis/power-spec.py```: Generates the gas velocity power spectrum of gas from the regions around the cloud. Useful for any future turbulence studies.
 - ```illustris-analysis/proj-prof.py```: Generates projected histograms of the halo for a quick visual inspection. By all means use the plotting utilities from Illustris web interface and avoid this.
 - ```PLUTO-simulations/```: This directory contains all the setup and data (ascii) of the hydro PDEs solved using finite volume PLUTO hydro code in one dimension. It also has the associated plotting scripts. The names of the files and sub-directories are self-explanatory.
+
+![Illustris TNG50-1 halo of interest](https://github.com/dutta-alankar/cooling-flow-model/blob/main/vis_TNG50-1_halo_67_8_gas_density.png)
