@@ -25,7 +25,7 @@ The Illustris TNG50 data that has been used is publicly hosted at: https://www.t
 
 Description of the files:
 
-- ```2-fluid-Riemann.nb```: A Mathematica notebook solving the Riemann problem of the one dimensional two-fluid model.
+- ```2-fluid-Riemann.nb```: A Mathematica notebook solving for the eigenwaves of the one dimensional two-fluid model. This is useful for solving the Riemann problem.
 - ```bernoulli-model(rTBeMdot).txt```: Bernouli number for the solution of the cooling flow model.
 - ```cooling-flow-MHD-model.py```: Generates cooling flow model and compares the model with stacked clouds from Nelson et. al 2020.
 - ```cooltable.dat```: CLoudy generated cooling function used in the cooling flow modelling.
