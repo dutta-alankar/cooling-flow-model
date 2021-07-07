@@ -11,7 +11,7 @@ A short YouTube video explaining this work: https://youtu.be/dqexGmjR2V0
                                                                        
 ```
 
-This repo contains the codes and the data used in the paper "Cooling flows around cold clouds in the circumgalactic medium:theory & comparison with TNG50"
+This repo contains the codes and the data used in the paper "Cooling flows around cold clouds in the circumgalactic medium: theory & comparison with TNG50"
 The larger sized data used in the code and cannot be uploaded to Github due to size restrictions can be found in the ```releases``` section of the repo.
 The ```cooling-flow-model-largedata.zip``` file contains the following files compressed in it:
 ```
