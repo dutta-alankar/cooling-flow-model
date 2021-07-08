@@ -3,7 +3,7 @@ This work is on modelling of local cooling flows in astrophysical plasma of the 
 
 A short YouTube video explaining this work: https://youtu.be/dqexGmjR2V0
 
-Paper on this work: https://arxiv.org/pdf/2107.02722.pdf
+Paper on this work: https://arxiv.org/abs/2107.02722
 
 ```
    ___   ___     ___   __    __ __  __   ___      ____ __      ___   __    __
