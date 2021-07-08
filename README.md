@@ -2,6 +2,7 @@
 This work is on modelling of local cooling flows in astrophysical plasma of the Circumgalactic medium and comparison with Illustris TNG50 Cosmological simulation.
 
 A short YouTube video explaining this work: https://youtu.be/dqexGmjR2V0
+Paper on this work: https://arxiv.org/pdf/2107.02722.pdf
 
 ```
    ___   ___     ___   __    __ __  __   ___      ____ __      ___   __    __
