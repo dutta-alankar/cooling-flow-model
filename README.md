@@ -30,7 +30,7 @@ Description of the files:
 - ```2-fluid-Riemann.nb```: A Mathematica notebook solving for the eigenwaves of the one dimensional two-fluid model. This is useful for solving the Riemann problem.
 - ```bernoulli-model(rTBeMdot).txt```: Bernouli number for the solution of the cooling flow model.
 - ```cooling-flow-MHD-model.py```: Generates cooling flow model and compares the model with stacked clouds from Nelson et. al 2020.
-- ```cooltable.dat```: CLoudy generated cooling function used in the cooling flow modelling.
+- ```cooltable.dat```: CLoudy generated cooling function used in the cooling flow modelling. Solar metallicity with normalization: ```n_e n_i```
 - ```discriminant_contour_MHD.py```: Contour of the discriminant of the two-fuid equation for the transonic solution to exist.
 - ```discriminant_transonic_cf.py```: Pure hydro discriminant for the transonic solution to exist.
 - ```pres_dr_CF_MHD-vary_for_figs1and3.py```: Creates just the de-dimensionalized solutions of fluid field in cooling flow model. Set beta very high to get the pure hydro limit. This can be varied to get the figures 1 and 3 in the paper.
