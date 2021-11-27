@@ -1,0 +1,37 @@
+#!/bin/sh
+## #
+##This is an example script example.sh
+##These commands set up the Grid Environment for your job:
+#PBS -N Pluto_Clcrush
+#PBS -l nodes=7:ppn=24,walltime=24:00:00
+#PBS -q batch
+#PBS -o output 
+#PBS -e error
+
+
+export SCRATCH=/home/vijit/Cooling_Townsend_Prateek/
+
+cd /home/vijit/PHOENIX/
+
+cp pluto.ini $SCRATCH
+cp cooltable.dat $SCRATCH
+cp pluto $SCRATCH
+cd $SCRATCH
+[ -d "Log_Files" ] && rm -rf Log_Files
+mkdir Log_Files
+nprocs=$(cat $PBS_NODEFILE | wc -l)
+
+# name of executable
+export MYPROG="./pluto"
+
+# Run MYPROG
+
+mpiexec --hostfile $PBS_NODEFILE -n $nprocs $MYPROG > pluto.out
+# -dec 8 7 2
+
+# make sure to exit the script, else job may not finish properly
+exit 0
+
+
+
+

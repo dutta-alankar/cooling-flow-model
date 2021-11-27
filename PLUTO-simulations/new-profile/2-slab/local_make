@@ -1,0 +1,8 @@
+ HDF5_LIB      = /home/alankar/comp_libs/hdf5/parallel
+ INCLUDE_DIRS += -I$(HDF5_LIB)/include
+ LDFLAGS      += -L$(HDF5_LIB)/lib -lhdf5 -lz 
+ CFLAGS       += -DUSE_HDF5 #-DH5_USE_16_API #-DUSE_PNG
+ OBJ          += hdf5_io.o
+ #OBJ          += tracking.o
+ -include townsend
+ #LDFLAGS += -L$(PNG_LIB)/lib #-lpng -lgsl -lgslcblas
