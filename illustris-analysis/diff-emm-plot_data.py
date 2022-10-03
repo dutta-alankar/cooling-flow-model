@@ -242,6 +242,8 @@ plt.savefig('./diff-emm-comparepdfs.png', transparent=True, bbox_inches='tight')
 fig.tight_layout()
 plt.show()
 plt.close(fig)
+np.savetxt('pdf-data.txt', np.vstack((Temperature_bin, vol_temp, mass_temp, diff_emm)).T, 
+        header='log10(T[K])			Vol_PDF		Mass_PDF		Diff_emm')
 
 individual = False
 if individual:
