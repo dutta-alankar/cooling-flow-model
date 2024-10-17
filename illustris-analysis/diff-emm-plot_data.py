@@ -245,6 +245,48 @@ plt.close(fig)
 np.savetxt('pdf-data.txt', np.vstack((Temperature_bin, vol_temp, mass_temp, diff_emm)).T, 
         header='log10(T[K])			Vol_PDF		Mass_PDF		Diff_emm')
 
+# simple plot asked by thesis referee
+fig, ax1 = plt.subplots(figsize=(13,10))
+
+color = 'tab:red'
+hist_data, x_edges = np.histogram(Temperature, bins=100, weights=vol, density=True)
+dT = x_edges[1]-x_edges[0]
+Temperature_bin = x_edges[1:]-dT/2
+vol_temp = hist_data#/dT
+ax1.semilogy(Temperature_bin,vol_temp, linewidth=5, color=color,
+             label=r'$\rm \dfrac{dV}{d log_{10}( T [K])} $') 
+ax1.set_ylabel('Probability distribution functions (PDFs)', size=28)
+# ax1.set_ylabel(r'$\rm \dfrac{dV}{d log_{10}( T [K])} $',size=28, color=color)
+ax1.tick_params(axis='y', which='major', labelsize=24, direction="out", pad=5)
+ax1.tick_params(axis='y', which='minor', labelsize=24, direction="out", pad=5)
+
+color = 'tab:blue'
+hist_data, x_edges = np.histogram(Temperature, bins=100, weights=vol*density, density=True)
+dT = x_edges[1]-x_edges[0]
+Temperature_bin = x_edges[1:]-dT/2
+mass_temp = hist_data#/dT
+ax1.semilogy(Temperature_bin,mass_temp, linewidth=5, color=color, 
+             label=r'$\rm \dfrac{dM}{d log_{10}( T [K])} $')
+
+hist_data, x_edges = np.histogram(Temperature, bins=100, weights=Edot, density=True)
+dT = x_edges[1]-x_edges[0]
+Temperature_bin = x_edges[1:]-dT/2
+diff_emm = hist_data#/dT
+plt.semilogy(Temperature_bin,diff_emm,linewidth=5, color='black', linestyle='-.',
+             label=r'$\rm \dfrac{d\dot{E}_{cool} [erg\ s^{-1}]}{d log_{10}( T [K])} $')
+
+ax1.set_xlabel(r'$\rm \log_{10}(T[K])$',size=28)
+ax1.grid()
+ax1.set_xlim(xmin=np.min(Temperature_bin)-0.05, xmax=8.2)
+ax1.set_ylim(ymin=3e-6, ymax=10**0.5)
+ax1.tick_params(axis='x', which='major', labelsize=24, direction="out", pad=5, labelcolor='black')
+ax1.tick_params(axis='x', which='minor', labelsize=24, direction="out", pad=5, labelcolor='black')
+plt.legend(loc='lower left', prop={'size': 24},framealpha=0.3, bbox_to_anchor=(0.1, 0))
+plt.savefig('./diff-emm-comparepdfs-simple_referee.png', transparent=True, bbox_inches='tight')
+fig.tight_layout()
+plt.show()
+plt.close(fig)
+
 individual = False
 if individual:
     fig = plt.figure(figsize=(13,10))
